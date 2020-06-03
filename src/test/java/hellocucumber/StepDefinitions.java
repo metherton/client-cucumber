@@ -16,6 +16,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.*;
 
+import io.github.sukgu.*;
+
 public class StepDefinitions {
 
     @Before
@@ -69,7 +71,17 @@ public class StepDefinitions {
         new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("lit-client")).isDisplayed();
-          //      return d.getTitle().toLowerCase().equals("lit-client");
+            }
+        });
+    }
+
+    @Then("A left hand menu is shown")
+    public void a_left_hand_menu_is_shown() {
+        new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                Shadow shadow = new Shadow(d);
+                WebElement element = shadow.findElement(".container");
+                return element.isDisplayed();
             }
         });
     }
