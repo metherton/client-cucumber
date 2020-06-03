@@ -56,4 +56,23 @@ public class StepDefinitions {
         driver.quit();
     }
 
+    @Given("I am on the ONS home page")
+    public void i_am_on_the_ONS_home_page() {
+        driver.get("http:\\localhost:8000");
+    }
+
+    @Then("A photo of tulips is shown")
+    public void a_photo_of_tulips_is_shown() {
+        // Write code here that turns the phrase above into concrete actions
+        // ONS home page is rendered dynamically with JavaScript
+        // Wait for the page to load timeout after ten seconds
+        new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.findElement(By.id("lit-client")).isDisplayed();
+          //      return d.getTitle().toLowerCase().equals("lit-client");
+            }
+        });
+    }
+
+
 }
