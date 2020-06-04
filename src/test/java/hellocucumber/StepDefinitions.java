@@ -70,17 +70,20 @@ public class StepDefinitions {
         // Wait for the page to load timeout after ten seconds
         new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
-                return d.findElement(By.id("lit-client")).isDisplayed();
+                Shadow shadow = new Shadow(d);
+                WebElement element = shadow.findElement("#tulips");
+                return element.isDisplayed();
             }
         });
     }
 
-    @Then("A left hand menu is shown")
-    public void a_left_hand_menu_is_shown() {
+    @Then("A link to Search Etherton family trees is shown")
+    public void a_link_to_Search_Etherton_family_trees_is_shown() {
+        // Write code here that turns the phrase above into concrete actions
         new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 Shadow shadow = new Shadow(d);
-                WebElement element = shadow.findElement(".container");
+                WebElement element = shadow.findElement("#search-family-trees");
                 return element.isDisplayed();
             }
         });
