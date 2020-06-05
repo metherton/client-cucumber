@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -77,13 +78,47 @@ public class StepDefinitions {
         });
     }
 
-    @Then("A link to Search Etherton family trees is shown")
+    @When("A link to Search Etherton family trees is shown")
     public void a_link_to_Search_Etherton_family_trees_is_shown() {
         // Write code here that turns the phrase above into concrete actions
         new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 Shadow shadow = new Shadow(d);
-                WebElement element = shadow.findElement("#search-family-trees");
+                WebElement element = shadow.findElement("#home-familyTrees");
+//                return element.getText().equals("Search Etherton family trees");
+                return element.isDisplayed();
+            }
+        });
+    }
+
+    @Then("A link to the GOONS is shown")
+    public void a_link_to_the_GOONS_is_shown() {
+        // Write code here that turns the phrase above into concrete actions
+        new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                Shadow shadow = new Shadow(d);
+                WebElement element = shadow.findElement("#goons");
+                return element.isDisplayed();
+            }
+        });
+    }
+
+    @Then("I click on Search Etherton family trees link")
+    public void i_click_on_Search_Etherton_family_trees_link() {
+        // Write code here that turns the phrase above into concrete actions
+        Shadow shadow = new Shadow(driver);
+        WebElement element = shadow.findElement("#home-familyTrees");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click().perform();
+    }
+
+    @Then("A list of Etherton family trees is shown")
+    public void a_list_of_Etherton_family_trees_is_shown() {
+        // Write code here that turns the phrase above into concrete actions
+        new WebDriverWait(driver,10L).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                Shadow shadow = new Shadow(d);
+                WebElement element = shadow.findElement("#london1");
                 return element.isDisplayed();
             }
         });
